@@ -15,11 +15,6 @@ RUN pacman -S --noconfirm iputils net-tools grep nodejs npm docker make pacman-c
 #  ln -fs /usr/lib/python3.8/site-packages/ /usr/lib/python3.7/site-packages
 # install python dependencies in one pass
 RUN pip install boto3 awscli flake8 black tox
-# magical hack to fix nodejs somehow
-WORKDIR /usr/app
-COPY ./ ./
-# install nodejs dependencies in one pass
-RUN npm install serverless kinesalite
 RUN pip3 install docker-compose
 RUN mkdir -p /opt/dynamodb_local
 WORKDIR /opt/dynamodb_local
@@ -49,4 +44,6 @@ RUN wget --no-verbose https://s3-us-west-2.amazonaws.com/public.iam.mozilla.com/
 RUN tar xzf psycopg2-2.8.3.tar.gz
 RUN cp -ar /postgresql-11.1/lib/* /usr/lib64/
 WORKDIR /var/task
+# install node dependencies in one pass
+RUN npm install serverless kinesalite
 RUN echo "export PATH=$PATH:/node_modules/.bin:/postgresql-11.1/bin" >> ~/.bashrc
