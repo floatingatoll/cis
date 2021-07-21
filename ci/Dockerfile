@@ -15,6 +15,7 @@ RUN pacman -S --noconfirm iputils net-tools grep nodejs npm docker make pacman-c
 #  ln -fs /usr/lib/python3.8/site-packages/ /usr/lib/python3.7/site-packages
 # install python dependencies in one pass
 RUN pip install boto3 awscli flake8 black tox
+# magical hack to fix nodejs somehow
 WORKDIR /usr/app
 COPY ./ ./
 # install nodejs dependencies in one pass
