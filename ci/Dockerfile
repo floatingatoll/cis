@@ -32,6 +32,8 @@ RUN pip install boto3 awscli
 RUN pip install flake8
 RUN pip install black
 RUN pip install tox
+WORKDIR /usr/app
+COPY ./ ./
 RUN npm install serverless
 RUN npm install kinesalite
 RUN pip3 install docker-compose
