@@ -23,5 +23,5 @@ jobs:
           chmod +x docker-compose
           sudo mv docker-compose /usr/local/bin
       - name: script
-          run: |
-            make test
+        run: |
+          make test
