@@ -1,7 +1,8 @@
 FROM archlinux:latest
 LABEL maintainer="akrug@mozilla.com"
 
-RUN pacman -Syyu --noconfirm
+# skip global package update
+#RUN pacman -Syyu --noconfirm
 RUN pacman --noconfirm -S --needed base-devel
 RUN pacman -S --noconfirm iputils
 RUN pacman -S --noconfirm net-tools
