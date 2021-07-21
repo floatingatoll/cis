@@ -3,6 +3,8 @@ LABEL maintainer="akrug@mozilla.com"
 
 # skip global package update
 #RUN pacman -Syyu --noconfirm
+# but download metadata
+RUN pacman -Sy --noconfirm
 RUN pacman --noconfirm -S --needed base-devel
 # install arch dependencies in one pass
 RUN pacman -S --noconfirm iputils net-tools grep nodejs npm docker make pacman-contrib jq python-pip zip gcc python2 wget unzip tar gawk jdk-openjdk
