@@ -43,6 +43,6 @@ RUN wget --no-verbose https://s3-us-west-2.amazonaws.com/public.iam.mozilla.com/
 RUN tar xzf psycopg2-2.8.3.tar.gz
 RUN cp -ar /postgresql-11.1/lib/* /usr/lib64/
 WORKDIR /var/task
-# install node dependencies in one pass
-RUN npm install serverless kinesalite
+# install node dependencies in one pass, as root, globally
+RUN npm install --unsafe-perm -g serverless kinesalite
 RUN echo "export PATH=$PATH:/node_modules/.bin:/postgresql-11.1/bin" >> ~/.bashrc
