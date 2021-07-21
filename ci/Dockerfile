@@ -3,11 +3,8 @@ LABEL maintainer="akrug@mozilla.com"
 
 # skip global package update
 #RUN pacman -Syyu --noconfirm
-# but download metadata
-RUN pacman -Sy --noconfirm
-RUN pacman --noconfirm -S --needed base-devel
 # install arch dependencies in one pass
-RUN pacman -S --noconfirm iputils net-tools grep nodejs npm docker make pacman-contrib jq python-pip zip gcc python2 wget unzip tar gawk jdk-openjdk
+RUN pacman --noconfirm -Sy --needed base-devel iputils net-tools grep nodejs npm docker make pacman-contrib jq python-pip zip gcc python2 wget unzip tar gawk jdk-openjdk
 ## Use this if you need to force-downgrade system's python
 ## You'll want to compile the version you want first and upload it to S3
 # RUN wget https://s3-us-west-2.amazonaws.com/public.iam.mozilla.com/python37-3.7.5-2-x86_64.pkg.tar.xz
