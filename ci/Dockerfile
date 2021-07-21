@@ -4,24 +4,8 @@ LABEL maintainer="akrug@mozilla.com"
 # skip global package update
 #RUN pacman -Syyu --noconfirm
 RUN pacman --noconfirm -S --needed base-devel
-RUN pacman -S --noconfirm iputils
-RUN pacman -S --noconfirm net-tools
-RUN pacman -S --noconfirm grep
-RUN pacman -S --noconfirm nodejs
-RUN pacman -S --noconfirm npm
-RUN pacman -S --noconfirm docker
-RUN pacman -S --noconfirm make
-RUN pacman -S --noconfirm pacman-contrib
-RUN pacman -S --noconfirm jq
-RUN pacman -S --noconfirm python-pip
-RUN pacman -S --noconfirm zip
-RUN pacman -S --noconfirm gcc
-RUN pacman -S --noconfirm python2
-RUN pacman -S --noconfirm wget
-RUN pacman -S --noconfirm unzip
-RUN pacman -S --noconfirm tar
-RUN pacman -S --noconfirm gawk
-RUN pacman -S --noconfirm jdk-openjdk
+# install arch dependencies in one pass
+RUN pacman -S --noconfirm iputils net-tools grep nodejs npm docker make pacman-contrib jq python-pip zip gcc python2 wget unzip tar gawk jdk-openjdk
 ## Use this if you need to force-downgrade system's python
 ## You'll want to compile the version you want first and upload it to S3
 # RUN wget https://s3-us-west-2.amazonaws.com/public.iam.mozilla.com/python37-3.7.5-2-x86_64.pkg.tar.xz
@@ -29,14 +13,12 @@ RUN pacman -S --noconfirm jdk-openjdk
 #RUN ln -fs /usr/bin/python3.7 /usr/bin/python && \
 #  rm -rf /usr/lib/python3.7/site-packages && \
 #  ln -fs /usr/lib/python3.8/site-packages/ /usr/lib/python3.7/site-packages
-RUN pip install boto3 awscli
-RUN pip install flake8
-RUN pip install black
-RUN pip install tox
+# install python dependencies in one pass
+RUN pip install boto3 awscli flake8 black tox
 WORKDIR /usr/app
 COPY ./ ./
-RUN npm install serverless
-RUN npm install kinesalite
+# install nodejs dependencies in one pass
+RUN npm install serverless kinesalite
 RUN pip3 install docker-compose
 RUN mkdir -p /opt/dynamodb_local
 WORKDIR /opt/dynamodb_local
