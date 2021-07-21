@@ -14,4 +14,4 @@ jobs:
       - name: script
         run: |
           docker-compose build
-          docker-compose run --rm tester bash -c '/root/utils/fake-creds.sh && source /root/.bashrc && make -C python-modules -j$(nproc) test-tox'
+          docker-compose run --rm tester bash -c '/root/utils/fake-creds.sh && source /root/.bashrc && make -C python-modules -j1 test-tox'
