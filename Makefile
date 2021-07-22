@@ -76,7 +76,9 @@ push-ci-container:
 
 .PHONY: test
 test:
+	@echo "# docker-compose build"
 	docker-compose build
+	@echo "# docker-compose run"
 	docker-compose run --rm tester bash -c '/root/utils/fake-creds.sh && source /root/.bashrc && make -C python-modules -j$(nproc) test-tox'
 
 .PHONE: test-module
