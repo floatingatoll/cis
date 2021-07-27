@@ -1,5 +1,5 @@
 # CIS - Change Integration Service
-[![Build Status](https://github.com/github/docs/actions/workflows/make-test.yml/badge.svg)](https://github.com/mozilla-iam/cis/actions/workflows/make-test.yml)
+[![Build Status](https://github.com/mozilla-iam/cis/actions/workflows/make-test.yml/badge.svg)](https://github.com/mozilla-iam/cis/actions/)
 CIS is the Mozilla IAM Change Integration Service.
 
 ## I'm an API user, where do I start?
